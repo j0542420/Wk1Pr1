@@ -108,7 +108,7 @@ namespace Wk1Pr1
             // display the result
             Console.WriteLine("Your age in months is " + MonthAge);
 
-            */
+            
 
             // ex 7
             // declare variables
@@ -165,5 +165,62 @@ namespace Wk1Pr1
             {
                 Console.WriteLine("Incorrect password! ");
             }
+            
+
+            // week 2, Ex1
+
+            int number;
+            Console.WriteLine("Input a whole number");
+            number = Convert.ToInt32(Console.ReadLine());
+
+            if (number > 0) 
+            { 
+                Console.WriteLine(number + " is a positive number");
+            } else if (number<0)
+            {
+                Console.WriteLine(number + " is a negative number");
+            }
+            else
+            {
+                Console.WriteLine(number + " is zero");
+            }
+
+            Console.WriteLine((number % 2 == 0) ? "It is an even number" : "It is a odd number ");
+
+            */
+
+            // week 2, Ex2
+            int grade;
+
+            Console.WriteLine("Input a numeric grade  (0-100)");
+            grade = Convert.ToInt32(Console.ReadLine());
+
+            int grade10 = grade/10;
+
+            switch (grade10) 
+            {
+                case 10:
+                    Console.WriteLine("You got a Grade of A.");
+                    break;
+                case 9:
+                    Console.WriteLine("You got a Grade of A.");
+                    break;
+                case 8:
+                    Console.WriteLine("You got a Grade of B.");
+                    break;
+                case 7:
+                    Console.WriteLine("You got a Grade of C.");
+                    break;
+                case 6:
+                    Console.WriteLine("You got a Grade of D.");
+                    break;
+                case 5:
+                    Console.WriteLine("You got a Grade of F.");
+                    break;
+                default:
+                    Console.WriteLine("You got a Grade of F.");
+                    break;
+            }
+        }
     }
 }

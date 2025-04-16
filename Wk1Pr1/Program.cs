@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO.Pipes;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Wk1Pr1
 {
@@ -187,7 +191,7 @@ namespace Wk1Pr1
 
             Console.WriteLine((number % 2 == 0) ? "It is an even number" : "It is a odd number ");
 
-            */
+            
 
             // week 2, Ex2
             int grade;
@@ -221,6 +225,205 @@ namespace Wk1Pr1
                     Console.WriteLine("You got a Grade of F.");
                     break;
             }
+
+            Console.WriteLine("Input a number such as 1234");
+            string input = Console.ReadLine();
+
+            int sum = 0;
+
+            foreach (char c in input)
+            {
+                Console.WriteLine(Convert.ToInt32(c));
+                sum += Convert.ToInt32(c.ToString());
+            }
+            Console.WriteLine("The sum of the digits is " + sum);
+
+            Console.WriteLine("Enter a string: ");
+            string str = Console.ReadLine();
+
+            Console.WriteLine()
+
+            
+
+            // week 2, Ex3
+            // declare variables
+            var num = 0;
+            // input
+            Console.WriteLine("Input a number");
+            num = Convert.ToInt32(Console.ReadLine());
+            // proccess
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine($"{num} x {i} = {num*i}\t {num+1} x {i} = {(num+1) * i}\t {(num+2)} x {i} = {(num+3) * i}\t");
+            }
+
+            // output
+            
+            // week 2, Ex4
+
+            // declare variables
+            int guess;
+            int comp;
+
+            // inpout
+            // process
+            Random rnd = new Random();
+            
+            // output
+            while (true) 
+            {
+                comp = rnd.Next(1, 10);
+                while (true)
+                {
+                    Console.WriteLine("What is your guessing a number between 1 and 10");
+                    guess = Convert.ToInt32(Console.ReadLine());
+                    if (guess == comp)
+                    {
+                        Console.WriteLine("You win");
+                    }
+                    else if (guess > comp)
+                    {
+                        Console.WriteLine("Your guess is too high");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Your guess is too low");
+                    }
+                }
+
+                Console.WriteLine("Do you want to play again? (Y/N)");
+
+                if (!Console.ReadLine().ToLower().StartsWith("y"))
+                {
+                    break;
+                }
+            }
+
+            
+
+            // week 2, Ex5
+
+            // output
+
+            //fibonacci sequence
+            // declare variables
+            int number = 0;
+
+            Console.WriteLine("Input a number: ");
+            number = Convert.ToInt32(Console.ReadLine());
+
+            //for (int i = 0; i < number; i++)
+            //{
+            // Console.Write(Fibonacci(i) + " ");
+            //}
+
+            long sum = 0;
+            for (int i = 1; i <= number; i++)
+            {
+                sum += Fibonacci(i);
+            }
+            Console.WriteLine("The sum of the Fibonacci sequence is " + sum);
+
+            // calculate the sum of n numbers of factorials starting at 1
+            // 1!=1
+            // 2!=1*2= 1!*2
+            // 3!=1*2*3= 2!*3
+
+            */
+
+            // password validation
+
+            //IsUpper() to check if character is upper case
+
+            //IsLower() to check if character is lower case
+
+            //IsDigit() to check if character is digit
+
+            // declare
+            string password = "";
+            bool hasUpper=false, hasLower=false, hasDigit=false;
+
+            Console.WriteLine("Input a password to validate");
+            password = Console.ReadLine();
+
+            if (password.Length < 8)
+            {
+                Console.WriteLine("Password must be at least 8 characters long");
+            }
+            else
+            {
+                foreach (char c in password)
+                {
+                    if (char.IsUpper(c)) 
+                    {
+                        hasUpper = true;
+                    }
+
+                    if (char.IsLower(c))
+                    {
+                        hasLower = true;
+                    }
+
+                    if (char.IsDigit(c))
+                    {
+                        hasDigit = true;
+                    }
+                }
+                if (!hasUpper)
+                {
+                    Console.WriteLine("Password must contain at least 1 upper case letter");
+                }
+                if (!hasLower)
+                {
+                    Console.WriteLine("Password must contain at least 1 lower case letter");
+                }
+                if (!hasDigit)
+                {
+                    Console.WriteLine("Password must contain at least 1 digit");
+                }
+            }
+
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            if (Regex.IsMatch(password, pattern))
+            {
+                Console.WriteLine("Password is valid");
+            }
+            else
+            {
+                Console.WriteLine("Password is invalid");
+            }
+
+        }
+        static int Fibonacci(int number)
+        {
+            int retVal = 0;
+            if (number == 0) // fixed value
+            {
+                retVal = 0;
+            }
+            else if (number == 1) // fixed value
+            {
+                retVal = 1;
+            }
+            else
+            {
+                retVal = Fibonacci(number - 1) + Fibonacci(number - 2);
+            }
+            return retVal;
+        }
+        static int factorial(int number)
+        {
+            int retVal = 0;
+            if (number == 1) // fixed value
+            {
+                retVal = 1;
+            }
+            else
+            {
+                retVal = factorial(number - 1) * number;
+            }
+            return retVal;
         }
     }
 }

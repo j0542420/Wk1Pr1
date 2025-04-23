@@ -418,7 +418,7 @@ namespace Wk1Pr1
             // week 3, Ex2
 
             Console.WriteLine(calSumDigits(1234));
-            */
+            
 
             // week 3, Ex3
 
@@ -435,7 +435,223 @@ namespace Wk1Pr1
             Console.WriteLine(reverseString("Hello"));
 
             Console.WriteLine(IsPalindrome(reverseString("Hello")));
+
+            // week 3, Ex6
+
+            
+
+            // calculator using methods
+
+            // using methods from the methods folder that has Class1.cs file
+            
+
+
+            while (true)
+            { 
+                Console.WriteLine("Input the first number");
+                double num1 = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Input the second number");
+                double num2 = Convert.ToDouble(Console.ReadLine());
+
+                Console.WriteLine("Input a number to select an operation");
+                Console.WriteLine("1 for Addition");
+                Console.WriteLine("2 for Subtraction");
+                Console.WriteLine("3 for Multiplication");
+                Console.WriteLine("4 for Division");
+                Console.WriteLine("others for Exit");
+
+                int option = Convert.ToInt32(Console.ReadLine());
+                switch (option) 
+                {
+                    case 1:
+                        Console.WriteLine("The result of addition is " + Add(num1, num2));
+                        break;
+                    case 2:
+                        Console.WriteLine("The result of subtraction is " + Subtraction(num1, num2));
+                        break;
+                    case 3:
+                        Console.WriteLine("The result of multiplication is " + Multiply(num1, num2));
+                        break;
+                    case 4:
+                        Console.WriteLine("the result of division is " + Division(num1, num2));
+                        break;
+                    default:
+                        Console.WriteLine("Exiting the calculator");
+                        return;
+                }
+            }
+
+
+            // week 3, Ex7
+            Console.WriteLine("Input a celcius number to convert to Fahrenheit");
+            double celcius = Convert.ToDouble(Console.ReadLine());
+
+            Console.WriteLine("The temperature of " + celcius + " in Celcius to Fahrenheit is " + CelciusToFahrenheit(celcius).ToString("0.00"));
+
+            // week 3, Ex 8
+            Console.WriteLine(Factorial(5)); // 120
+
+            // week 3, Ex 9
+
+            double[] assignments = { 80, 90, 85, 70, 95 }; // declare and initialize the array
+            double avgAssignment = Average(assignments); // call the method to calculate the average
+
+            double[] midTerms = { 75, 80, 85 }; // declare and initialize the array
+            double avgMidTerm = Average(midTerms); // call the method to calculate the average
+
+            double[] finalExams = { 90, 85, 80 }; // declare and initialize the array
+            double avgFinalExam = Average(finalExams); // call the method to calculate the average
+
+            double finalGrade = CalculateFinalGrade(avgAssignment, avgMidTerm, avgFinalExam); // call the method to calculate the final grade
+
+            Console.WriteLine("The final grade is " + finalGrade.ToString("0.00")); // display the result
+*/
+
+            //calling CountVowels method
+            
+            Console.WriteLine("Number ov vowels in Hello " + CountVowels("Hello"));
+
+            // Week 3, Ex 10
+
+
+            for (int i = 0; i < 5; i++)
+            {
+
+                int[] dices = RollDice(); // call the method to roll the dice
+                Console.WriteLine("First Number " + dices[0] + " Second Number " + dices[1]); // display the result
+
+            }
+
+            string can1="j", can2="o", can3="s";
+            votes.Add(can1, 0); // add the candidate to the dictionary
+            votes.Add(can2, 0); // add the candidate to the dictionary
+            votes.Add(can3, 0); // add the candidate to the dictionary
+            // who do you vote
+            // switch case
+
         }
+        static Dictionary<string, int> votes = new Dictionary<string, int>(); // declare a dictionary to hold the votes
+        static void CastVote(string candidateName) 
+        {
+            votes[candidateName] ++; // increment the vote count for the candidate
+        }
+        static void DisplayVotes()
+        {
+            foreach (var vote in votes) // iterate through the dictionary
+            {
+                Console.WriteLine(vote.Key + " has " + vote.Value + " votes"); // display the result
+            }
+        }
+        static void ResetVotes()
+        {
+            Dictionary<string, int> temp = new Dictionary<string, int>();
+            foreach (var x in votes) // iterate through the dictionary
+            {
+                temp[x.Key] = x.Value;
+            }
+
+        }
+
+
+
+        static Random rnd = new Random();
+        // method to rowl 2 dice
+        public static int[] RollDice()
+        {
+            int[] retVal = new int[2]; // declare variable to hold the result
+            //Random rnd = new Random(); // declare variable to hold the random number generator
+            retVal[0] = rnd.Next(0, 7); // proccess
+            retVal[1] = rnd.Next(0, 7); // proccess
+            return retVal; // output
+        }
+
+
+
+        //method to count vowels
+        static int CountVowels(string input) 
+        {
+            int retVal = 0; // declare variable to hold the result
+
+            string vowels = "aeiou"; // declare variable to hold the vowels
+
+            foreach (char c in input.ToLower())
+            // proccess
+            {
+                if (vowels.Contains(c)) // check if the character is a vowel
+                {
+                    retVal++; // increment the count
+                }
+            }
+
+            return retVal; // output
+        }
+
+        // method for grading assignment
+        static double Average(double[] grades)
+        {
+            double retVal = 0; // declare variable to hold the result
+
+            double sum = 0;
+            foreach(var grade in grades)
+            {
+                sum += grade; // proccess
+            }
+
+            retVal = sum / grades.Length; // calculate the average
+
+            return retVal;
+        }
+        // method to calculate the final grade
+        static double CalculateFinalGrade(double assignments, double midTerms, double finalExam)
+        {
+            double retVal = 0; // declare variable to hold the result
+            retVal = (assignments * 0.4) + (midTerms * 0.3) + (finalExam * 0.3); // proccess
+            return retVal; // output
+        }
+
+        // method for factorial calculation using recursion
+        static long Factorial(int n)
+        {
+            long retVal = 1; // declare variable to hold the result
+            if (n == 0)
+            {
+                retVal = -1; // invalid input
+            }
+            else
+            {
+
+                for (int i = 1; i <= n; i++)
+                {
+                    retVal = retVal * i; // proccess
+                } 
+            }
+            return retVal; // output
+        }
+        public static double CelciusToFahrenheit(double celcius)
+        {
+            return (celcius * 9 / 5) + 32;
+        }
+        /*
+        // method for addition
+        static double Add(double num1, double num2)
+        {
+            return num1 + num2;
+        }
+        static double Subtraction(double num1, double num2)
+        {
+            return num1 - num2;
+        }
+        static double Multiply(double num1, double num2)
+        {
+            return num1 * num2;
+        }
+        static double Division(double num1, double num2)
+        {
+            return num1 / num2;
+        }
+        // another method for addition
+        static double Add1(double n1, double n2) => n1 + n2;
+        */
         static bool IsPalindrome(string str)
         {
             return (str == reverseString(str));

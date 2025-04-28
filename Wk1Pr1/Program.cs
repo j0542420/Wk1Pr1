@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Pipes;
 using System.Linq;
@@ -505,7 +506,7 @@ namespace Wk1Pr1
             double finalGrade = CalculateFinalGrade(avgAssignment, avgMidTerm, avgFinalExam); // call the method to calculate the final grade
 
             Console.WriteLine("The final grade is " + finalGrade.ToString("0.00")); // display the result
-*/
+
 
             //calling CountVowels method
             
@@ -529,6 +530,90 @@ namespace Wk1Pr1
             // who do you vote
             // switch case
 
+            */
+
+            // week 4, Ex 1
+
+            int[] ints = new int[3];
+
+            ints = InputArray(ints); // call the method to input the array
+            PrintArray(ints); // call the method to print the array
+            Console.WriteLine("The max value is " + FindMax(ints)); // call the method to find the max value
+
+            SortArray(ints);
+            Console.WriteLine("after sorting: ");
+            PrintArray(ints); // call the method to print the array
+
+            Console.WriteLine(Havings(ints, 5));
+
+            Console.ReadLine();
+
+        }
+        static int[] InputArray(int[] anArray) 
+        {
+            int[] returnArray = new int[anArray.Length]; // declare a temp array
+            for (int i = 0; i < anArray.Length; i++) 
+            {
+                Console.WriteLine("Input a value for element " +i); // prompt the user for input
+
+                returnArray[0] = Convert.ToInt32(Console.ReadLine()); // proccess
+            }
+            return returnArray; // return array with input values
+        }
+
+        static void PrintArray(int[] anArray) 
+        {
+            foreach(var i in anArray)
+            {
+                Console.WriteLine(i); // display the result
+            }
+        }
+        static int FindMax(int[] anArray) 
+        {
+            int max = anArray[0]; // assign the first element of the array to max
+
+            foreach (var x in anArray) // compare all elements to max
+            {
+                if (x > max) // proccess
+                {
+                    max = x; // assign the value to max
+                }
+            }
+            return max; // output
+        }
+        static int[] SortArray(int[] anArray) 
+        {
+            int[] retArray = new int[anArray.Length];
+            int temp;
+            for (int i =0; i<anArray.Length-1; i++) // start at the first element of the array
+            {
+                for (int j = i+1; j < anArray.Length; j++)  // compare with all numbers
+                {
+                    if (anArray[i] > anArray[j]) // change the sign to sort in descending order
+                    {
+                        // swap the values
+                        temp = anArray[i];
+                        anArray[i] = anArray[j];
+                        anArray[j] = temp; 
+                    }
+                }
+            }
+            retArray = anArray;
+            return retArray; // output
+        }
+        static bool Havings(int[] anArray, int aNumber)
+        { 
+            bool retVal = false; // declare variable to hold the result
+
+            foreach (var x in anArray)
+            { 
+                if (x == aNumber) // if equal, conclude found or not found
+                {
+                    retVal = true;
+                }
+            }
+
+            return retVal; // output
         }
         static Dictionary<string, int> votes = new Dictionary<string, int>(); // declare a dictionary to hold the votes
         static void CastVote(string candidateName) 
